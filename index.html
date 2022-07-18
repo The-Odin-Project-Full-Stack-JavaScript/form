@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <img src="assets/mountains2.png" alt="mountains" id="mountains">
+        <img src="assets/clouds2.png" alt="clouds" id="clouds">
+    </section>
+
+    <section>
+        <div class="border"></div>
+        <div class="form-container">
+
+            <!-- "autocomplete=new-password" was added to stop the browser from autocompleting, as "off" wasn't working -->
+            <form action="#" method="post">
+
+                <fieldset>
+                    <img src="assets/logo.svg" alt="A logo of a chess piece with viking horns on the head" id="logo">
+                    <h2>You knou you want to.</h2>
+                </fieldset>
+
+                <label for="firstname"><img src="assets/account.svg" alt="Account icon"></label>
+                <input type="text" name="firstname" id="firstname" placeholder="First name" autocomplete="new-password">
+
+                <input type="text" name="lastname" id="lastname" placeholder="Last name" autocomplete="new-password">
+
+                <label for="phone"><img src="assets/phone.svg" alt="Phone icon"></label>
+                <input type="tel" name="phone" id="phone" placeholder="xxx-xxx-xxxx" autocomplete="new-password">
+
+                <label for="email"><img src="assets//email.svg" alt="Email icon"></label>
+                <input type="email" name="email" id="email" placeholder="you@youremail.com" autocomplete="new-password">
+
+                <label for="password"><img src="assets/lock.svg" alt="Lock icon"></label>
+                <input type="password" name="password" id="password" placeholder="Password" autocomplete="new-password">
+
+                <label for="password"><img src="assets/lock.svg" alt="Lock icon"></label>
+                <input type="password" name="confirm-password" id="confirm-password" placeholder="confirm password"
+                    autocomplete="new-password">
+
+                <button type="submit">Create account</button>
+            </form>
+
+            <p>Already have an account? <a href="#">Log in</a></p>
+        </div>
+    </section>
+</body>
+
+</html>
