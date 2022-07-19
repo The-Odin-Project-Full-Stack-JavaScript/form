@@ -17,10 +17,10 @@
 
     <section>
         <div class="border"></div>
+        <div class="circle"></div>
         <div class="form-container">
 
-            <!-- "autocomplete=new-password" was added to stop the browser from autocompleting, as "off" wasn't working -->
-            <form action="#" method="post">
+            <form action="#" method="post" autocomplete="off">
 
                 <fieldset>
                     <img src="assets/logo.svg" alt="A logo of a chess piece with viking horns on the head" id="logo">
@@ -28,22 +28,29 @@
                 </fieldset>
 
                 <label for="firstname"><img src="assets/account.svg" alt="Account icon"></label>
-                <input type="text" name="firstname" id="firstname" placeholder="First name" autocomplete="new-password">
+                <input type="text" name="firstname" id="firstname" placeholder="First name" required>
 
-                <input type="text" name="lastname" id="lastname" placeholder="Last name" autocomplete="new-password">
+                <input type="text" name="lastname" id="lastname" placeholder="Last name" required>
 
                 <label for="phone"><img src="assets/phone.svg" alt="Phone icon"></label>
-                <input type="tel" name="phone" id="phone" placeholder="xxx-xxx-xxxx" autocomplete="new-password">
+                <input type="tel" name="phone" id="phone" placeholder="xxx-xxx-xxxx" required>
+
+                <!-- Add regex pattern for phonenumber + change placeholder pattern -->
 
                 <label for="email"><img src="assets//email.svg" alt="Email icon"></label>
-                <input type="email" name="email" id="email" placeholder="you@youremail.com" autocomplete="new-password">
+                <input type="email" name="email" id="email" placeholder="you@youremail.com" required>
+
+                <!-- Add regex pattern for email -->
 
                 <label for="password"><img src="assets/lock.svg" alt="Lock icon"></label>
-                <input type="password" name="password" id="password" placeholder="Password" autocomplete="new-password">
+                <input type="password" name="password" id="password" placeholder="Password" required
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+
+                <!-- Learn regex pattern to qualify passwords -->
 
                 <label for="password"><img src="assets/lock.svg" alt="Lock icon"></label>
-                <input type="password" name="confirm-password" id="confirm-password" placeholder="confirm password"
-                    autocomplete="new-password">
+                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm password"
+                    required>
 
                 <button type="submit">Create account</button>
             </form>
@@ -52,5 +59,27 @@
         </div>
     </section>
 </body>
+
+<script>
+
+    // Check that passwords match and have a certain degree of complexity
+
+    const myForm = document.querySelector('form');
+    const password = document.querySelector('#password');
+    const confirmPassword = document.querySelector('#confirm-password');
+
+    password.addEventListener('input', function (e) {
+
+        if (password.validity.patternMismatch) {
+            password.setCustomValidity('The password needs to be in this format');
+            password.reportValidity();
+        } else {
+            password.setCustomValidity('');
+        }
+
+    })
+
+
+</script>
 
 </html>
