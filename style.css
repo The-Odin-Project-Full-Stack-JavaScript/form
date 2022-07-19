@@ -31,15 +31,10 @@ section {
     align-items: center;
     justify-content: center;
     position: absolute;
-    z-index: 1;
-}
-
-section:nth-child(1)>* {
-    position: absolute;
-    width: 70%;
 }
 
 #clouds {
+    position: absolute;
     width: 90%;
     transform: translateY(30%);
     transition: 0.5s ease;
@@ -47,6 +42,8 @@ section:nth-child(1)>* {
 }
 
 #mountains {
+    position: absolute;
+    width: 70%;
     transition: 0.5s ease;
     transform: translateX(1%);
     z-index: 1;
@@ -55,11 +52,11 @@ section:nth-child(1)>* {
 /* Align form body */
 
 .form-container {
-    position: relative;
+    position: absolute;
     width: 400px;
     height: 400px;
     padding: 1%;
-    z-index: 2;
+    z-index: 3;
     background: white;
     transform: translateX(40%);
     text-align: center;
@@ -71,7 +68,7 @@ section:nth-child(1)>* {
 
 .border {
     border: 5px solid white;
-    width: 400px;
+    width: 500px;
     opacity: 0.5;
     height: 400px;
     box-sizing: content-box;
@@ -82,20 +79,16 @@ section:nth-child(1)>* {
     transition: 0.5s ease;
 }
 
-.form-container::after {
+.circle {
     content: '';
     width: 300px;
     height: 300px;
-    opacity: 0;
-    background: red;
+    background: rgb(188, 72, 165);
     position: absolute;
     transition: 0.5s ease;
-}
-
-.form-container:hover::after {
-    cursor: pointer;
-    background-color: blue;
-    opacity: 1;
+    border-radius: 50%;
+    z-index: 0;
+    transform: translate(40%, -40%);
 }
 
 /* Initialize grid */
@@ -105,7 +98,7 @@ form {
     grid-template: repeat(7, 1fr) / 1fr 4fr 4fr;
     height: 80%;
     gap: 10px;
-    padding: 15px;
+    padding: 10px;
 }
 
 /* Grid placements */
@@ -147,17 +140,36 @@ form button {
 
 /* Form styling */
 
-form h2 {
+#logo {
+    justify-self: center;
+    width: 50px;
+    height: 50px;
+}
+
+h2 {
     padding-bottom: 2%;
 }
 
-
-form input {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    padding-left: 15px;
+input {
     border-radius: 5px;
     font-family: OpenSans;
-    border: 1px solid rgba(0, 0, 0, 0.075);
+    border: none;
+    padding-left: 10px;
+    width: 90%;
+    background-color: grey;
+}
+
+input[type='text'] {
+    width: 80%;
+}
+
+input:hover,
+input:active,
+input:focus {
+    background: rgba(0, 0, 0, 0.127);
+    border: none;
+    outline: none;
+    resize: none;
 }
 
 form img {
@@ -165,10 +177,13 @@ form img {
     width: 20px;
 }
 
-#logo {
-    justify-self: center;
-    width: 50px;
-    height: 50px;
+input:invalid {
+    border: 1px solid red;
+}
+
+input:valid {
+    border: 1px solid green;
+    background-color: white;
 }
 
 button {
@@ -178,8 +193,6 @@ button {
     border-radius: 5px;
     color: white;
     width: 90%;
-    font-family: Neutra;
-    font-size: 0.9rem;
     margin-top: 4%;
     height: 100%;
 }
@@ -190,5 +203,6 @@ a {
 }
 
 p {
-    margin-top: 10px;
+    margin-top: 25px;
+    font-size: 0.8rem;
 }
