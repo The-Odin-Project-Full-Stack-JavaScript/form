@@ -33,20 +33,15 @@
                 <input type="text" name="lastname" id="lastname" placeholder="Last name" required>
 
                 <label for="phone"><img src="assets/phone.svg" alt="Phone icon"></label>
-                <input type="tel" name="phone" id="phone" placeholder="xxx-xxx-xxxx" required>
-
-                <!-- Add regex pattern for phonenumber + change placeholder pattern -->
+                <input type="tel" name="phone" id="phone" placeholder="xxx-xxx-xxxx" pattern="(\d+){9,}" required>
 
                 <label for="email"><img src="assets//email.svg" alt="Email icon"></label>
-                <input type="email" name="email" id="email" placeholder="you@youremail.com" required>
-
-                <!-- Add regex pattern for email -->
+                <input type="email" name="email" id="email" placeholder="you@youremail.com"
+                    pattern="\w+@\w+\.(com|ca|org|net)" required>
 
                 <label for="password"><img src="assets/lock.svg" alt="Lock icon"></label>
                 <input type="password" name="password" id="password" placeholder="Password" required
-                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
-
-                <!-- Learn regex pattern to qualify passwords -->
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
 
                 <label for="password"><img src="assets/lock.svg" alt="Lock icon"></label>
                 <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm password"
@@ -67,18 +62,41 @@
     const myForm = document.querySelector('form');
     const password = document.querySelector('#password');
     const confirmPassword = document.querySelector('#confirm-password');
+    myForm.noValidate = true;
 
-    password.addEventListener('input', function (e) {
 
-        if (password.validity.patternMismatch) {
-            password.setCustomValidity('The password needs to be in this format');
-            password.reportValidity();
-        } else {
-            password.setCustomValidity('');
-        }
+    Array.from(myForm.elements).forEach(i => {
 
+        i.addEventListener('input', function (e) {
+
+            // Customized error message to let user know the correct password format
+            if (i == password) {
+                if (password.validity.patternMismatch) {
+                    password.setCustomValidity('Your password must be 8 characters long and contain atleast: 1 uppercase letter, 1 lowercase letter, and a number');
+                    password.reportValidity();
+                } else {
+                    password.setCustomValidity('');
+                }
+            }
+
+            if (i == confirmPassword) {
+                if (confirmPassword.value != password.value) {
+                    confirmPassword.setCustomValidity('The passwords do not match');
+                    confirmPassword.reportValidity();
+                } else {
+                    confirmPassword.setCustomValidity('');
+                }
+            }
+
+            // As the user interacts with any of the inputs, check their validity, if they are invalid, adjust the border color accordingly
+            if (i.checkValidity()) {
+                i.style.border = "1px solid green";
+            }
+            else {
+                i.style.border = "1px solid red";
+            }
+        })
     })
-
 
 </script>
 
